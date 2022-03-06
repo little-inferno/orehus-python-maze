@@ -70,6 +70,14 @@
                 >
                   ascii
                 </tui-radio-block>
+                <tui-radio-block
+                  contentAlign="right"
+                  formControlName="testValue"
+                  item="orehus-image"
+                  size="m"
+                >
+                  orehus image
+                </tui-radio-block>
               </div>
             </form>
             <button
@@ -84,7 +92,7 @@
         </div>
         <div class="tui-col_md-6  tui-col_lg-8">
           <form class="container" [formGroup]="testForm">
-            <label tuiLabel i18n-label label="Лабиринт">
+            <label tuiLabel i18n-label label="Лабиринт" *ngIf="testFormd.value.testValue !=='orehus-image'">
               <tui-text-area style="font-family: 'Courier New',monospace; line-height: 130% !important;"
                              formControlName="testValue1"
                              [tuiTextfieldLabelOutside]="true"
@@ -93,9 +101,12 @@
                 Type a text
               </tui-text-area>
             </label>
+            <app-canvas #appCanvas *ngIf="testFormd.value.testValue ==='orehus-image'">
+            </app-canvas>
           </form>
         </div>
       </div>
+
     </div>
   </div>
 </tui-root>

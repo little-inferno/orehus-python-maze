@@ -1,6 +1,5 @@
-
-export default function orehusTiles() {
-  return new Map([
+class OrehusTilingContext implements MazeContext<String> {
+  readonly tiles = new Map([
     ['empty', ':empty:'],
     ['horizontal', ':orehus_python2_h1:'],
     ['vertical', ':orehus_python2:'],
@@ -21,4 +20,21 @@ export default function orehusTiles() {
     ['left-up-right', ':orehus_python_x:'],
     ['left-down-right', ':orehus_python_x:'],
   ])
+
+  fill(maze: Array<Array<string>>): string {
+    let result = ""
+
+    for (let r = 0; r < maze.length; ++r) {
+      for (let c = 0; c < maze[r].length; ++c) {
+        result += this.tiles.get(maze[r][c])
+      }
+      result += '\n'
+    }
+
+    return result
+  }
+}
+
+export {
+  OrehusTilingContext
 }

@@ -1,10 +1,12 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import generate from 'generate-maze';
 import mazeTiling from "../maze/maze";
-import tiles from "../maze/ascii-tiling";
-import orehusTiles from "../maze/orehus-tiling";
+import {AsciiTilingContext} from "../maze/ascii-tiling";
+import {OrehusTilingContext} from "../maze/orehus-tiling";
+import {MazeComponent} from "./maze.component";
+import {OrehusImageTilingContext} from "../maze/orehus-image-tiling";
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,20 @@ import orehusTiles from "../maze/orehus-tiling";
 })
 export class AppComponent {
   title = 'orehus-maze';
+
+  // @ts-ignore
+  appCanvas: MazeComponent;
+
+  @ViewChild('appCanvas') set content(content: ElementRef) {
+    console.log(content)
+    if (content) { // initially setter gets called with undefined
+
+
+      // @ts-ignore
+      this.appCanvas = content;
+    }
+  }
+
 
   readonly form = new FormGroup({
     mazeWidth: new FormControl(3, Validators.required),
@@ -32,44 +48,27 @@ export class AppComponent {
 
     let mode = this.testFormd.value.testValue
 
-    let tile = mode == "orehus" ?  orehusTiles() : tiles()
-
     let seed = isNaN(Number(this.form.value.seed)) ? Date.now() : this.form.value.seed
     console.log(seed)
 
     const maze = generate(this.form.value.mazeWidth, this.form.value.mazeHeight, true, seed);
 
 
-    let res = mazeTiling(maze, this.form.value.mazeWidth, this.form.value.mazeHeight, tile)
+    let res = mazeTiling(maze, this.form.value.mazeWidth, this.form.value.mazeHeight)
 
-    let xx = ""
-
-    for (var r = 0; r < res.length; ++r) {
-      for (var c = 0; c < res[r].length; ++c)
-        if (res[r][c] === undefined)
-          res[r][c] = "*"
-
-      xx += res[r].join('')
-      xx += '\n'
+    switch (mode) {
+      case "orehus-image":
+        new OrehusImageTilingContext(this.appCanvas.cx).fill(res)
+        break;
+      case "orehus":
+        this.testForm.setValue({testValue1: new OrehusTilingContext().fill(res)})
+        break;
+      case "ascii":
+        this.testForm.setValue({testValue1: new AsciiTilingContext().fill(res)})
+        break;
     }
 
-    this.testForm.setValue({testValue1: xx})
-
-    console.log(maze);
   }
 
 
 }
-
-/*
-
-*━━━━━*
-┃     ┃
-┃ * * ┃
-┃ ┃ ┃ ┃
-┃ *━*━*
-┃     ┃
-*━━━━━*
-
-
- */
