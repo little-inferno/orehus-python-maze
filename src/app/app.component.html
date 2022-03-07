@@ -53,12 +53,18 @@
             </label>
             <label tuiLabel i18n-label label="Стиль">
               <form class="group" [formGroup]="testFormd">
-                <div tuiGroup class="group" [collapsed]="true" orientation="vertical" [adaptive]="true" style="width:100%">
+                <div tuiGroup
+                     class="group"
+                     [collapsed]="true"
+                     orientation="vertical"
+                     [adaptive]="true"
+                     style="width:100%">
                   <tui-radio-block
                     contentAlign="right"
                     formControlName="testValue"
                     item="orehus"
                     size="m"
+                    (focusedChange)="onChange($event, 'orehus')"
                   >
                     orehus
                   </tui-radio-block>
@@ -67,6 +73,7 @@
                     formControlName="testValue"
                     item="ascii"
                     size="m"
+                    (focusedChange)="onChange($event, 'ascii')"
                   >
                     ascii
                   </tui-radio-block>
@@ -75,6 +82,7 @@
                     formControlName="testValue"
                     item="orehus-image"
                     size="m"
+                    (focusedChange)="onChange($event, 'orehus-image')"
                   >
                     orehus image
                   </tui-radio-block>

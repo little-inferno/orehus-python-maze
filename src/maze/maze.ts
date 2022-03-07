@@ -8,7 +8,7 @@ type Cell = {
   set: number,
 }
 
-export default function mazeTiling(maze: Array<Array<Cell>>, width: number, height: number) {
+function mazeTiling(maze: Array<Array<Cell>>, width: number, height: number) {
   let resultMaze = Array(height * 2);
 
   for (let r = 0; r < maze.length; ++r) {
@@ -98,4 +98,9 @@ export default function mazeTiling(maze: Array<Array<Cell>>, width: number, heig
   resultMaze[height * 2][width * 2] = 'up-left'
 
   return resultMaze;
+}
+
+export {
+  Cell,
+  mazeTiling
 }
