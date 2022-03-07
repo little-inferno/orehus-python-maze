@@ -24,24 +24,22 @@
     <div class="tui-container tui-container_adaptive">
       <div class="tui-row tui-row_adaptive">
         <div class="tui-col_xs-12 tui-col_md-5 tui-col_lg-4">
-
           <form class="b-form" [formGroup]="form">
             <label tuiLabel i18n-label label="Ширина лабиринта">
               <tui-input-count
                 formControlName="mazeWidth"
                 tuiTextfieldSize="m"
                 [min]="3"
-                [max]="45"
+                [max]="30"
                 [tuiTextfieldLabelOutside]="true"
               ></tui-input-count>
             </label>
-
             <label tuiLabel i18n-label label="Высота лабиринта">
               <tui-input-count
                 formControlName="mazeHeight"
                 tuiTextfieldSize="m"
                 [min]="3"
-                [max]="45"
+                [max]="30"
                 [tuiTextfieldLabelOutside]="true"
               ></tui-input-count>
             </label>
@@ -49,42 +47,46 @@
               <tui-input-number
                 formControlName="seed"
                 tuiTextfieldSize="m"
+                [tuiTextfieldLabelOutside]="true"
               >
               </tui-input-number>
             </label>
-            <form class="group" [formGroup]="testFormd">
-              <div tuiGroup class="group" [collapsed]="true">
-                <tui-radio-block
-                  contentAlign="right"
-                  formControlName="testValue"
-                  item="orehus"
-                  size="m"
-                >
-                  orehus
-                </tui-radio-block>
-                <tui-radio-block
-                  contentAlign="right"
-                  formControlName="testValue"
-                  item="ascii"
-                  size="m"
-                >
-                  ascii
-                </tui-radio-block>
-                <tui-radio-block
-                  contentAlign="right"
-                  formControlName="testValue"
-                  item="orehus-image"
-                  size="m"
-                >
-                  orehus image
-                </tui-radio-block>
-              </div>
-            </form>
+            <label tuiLabel i18n-label label="Стиль">
+              <form class="group" [formGroup]="testFormd">
+                <div tuiGroup class="group" [collapsed]="true" orientation="vertical" [adaptive]="true" style="width:100%">
+                  <tui-radio-block
+                    contentAlign="right"
+                    formControlName="testValue"
+                    item="orehus"
+                    size="m"
+                  >
+                    orehus
+                  </tui-radio-block>
+                  <tui-radio-block
+                    contentAlign="right"
+                    formControlName="testValue"
+                    item="ascii"
+                    size="m"
+                  >
+                    ascii
+                  </tui-radio-block>
+                  <tui-radio-block
+                    contentAlign="right"
+                    formControlName="testValue"
+                    item="orehus-image"
+                    size="m"
+                  >
+                    orehus image
+                  </tui-radio-block>
+                </div>
+              </form>
+            </label>
             <button
               tuiButton
               type="button"
-              class="tui-space_right-3 tui-space_bottom-3"
+              class="tui-space_right-3 tui-space_bottom-3 tui-space_top-3"
               (click)="onClick($event)"
+              style="width:100%"
             >
               Сгенерировать
             </button>

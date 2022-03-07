@@ -49,10 +49,8 @@ export class AppComponent {
     let mode = this.testFormd.value.testValue
 
     let seed = isNaN(Number(this.form.value.seed)) ? Date.now() : this.form.value.seed
-    console.log(seed)
 
     const maze = generate(this.form.value.mazeWidth, this.form.value.mazeHeight, true, seed);
-
 
     let res = mazeTiling(maze, this.form.value.mazeWidth, this.form.value.mazeHeight)
 
@@ -67,8 +65,5 @@ export class AppComponent {
         this.testForm.setValue({testValue1: new AsciiTilingContext().fill(res)})
         break;
     }
-
   }
-
-
 }

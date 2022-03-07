@@ -14,8 +14,8 @@ export class MazeComponent implements AfterViewInit {
   // @ts-ignore
   @ViewChild('canvas') public canvas: ElementRef;
 
-  @Input() public width = 16*45+8;
-  @Input() public height = 16*45+8;
+  @Input() public width = 48*15+24;
+  @Input() public height = 48*15+24;
 
   // @ts-ignore
   public cx: CanvasRenderingContext2D;

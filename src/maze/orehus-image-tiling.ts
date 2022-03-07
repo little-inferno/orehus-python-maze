@@ -42,7 +42,7 @@ class OrehusImageTilingContext implements MazeContext<String> {
     for (let r = 0; r < maze.length; ++r) {
       for (let c = 0; c < maze[r].length; ++c) {
         // @ts-ignore
-        this.cx.drawImage(this.tiles.get(maze[r][c]), 8 * c, 8 * r, 8, 8)
+        this.cx.drawImage(this.tiles.get(maze[r][c]), 24 * c, 24 * r, 24, 24)
       }
     }
 
